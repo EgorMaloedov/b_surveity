@@ -1,12 +1,17 @@
 from flask import Flask
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
+# Подключаемся к MongoDB
+client = MongoClient('mongodb://localhost:27017/')
+db = client['flaskdb']
+collection = db['messages']
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
-
+def index():
+    collection.insert_one({"message": "Hello, World!"})
+    return "Data inserted into MongoDB!"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
