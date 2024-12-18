@@ -11,7 +11,7 @@ collection = db['messages']
 @app.route('/')
 def index():
     collection.insert_one({"message": "Hello, World!"})
-    return "Data inserted into MongoDB!"
+    return "Hi dev!"
 
 if __name__ == '__main__':
     app.run(debug=True)
